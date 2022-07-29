@@ -1,0 +1,8 @@
+venv
+
+# Apple stuff
+.DS_Store
+
+# Pycharm stuff
+.idea/*
+universal_pulse.egg-info/
