@@ -1,4 +1,5 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
+# Author: Mathieu Guay-Paquet
 
 """A Gaussian3D convolution kernel for astropy."""
 # pylint: disable=line-too-long, too-many-lines, too-many-arguments, invalid-name
