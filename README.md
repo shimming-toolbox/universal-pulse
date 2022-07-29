@@ -15,7 +15,7 @@ python3 -m venv venv
 source venv/bin/activate
 ~~~
 
-Install dependencies
+Install package and dependencies
 ~~~
-
+pip install -e .
 ~~~
