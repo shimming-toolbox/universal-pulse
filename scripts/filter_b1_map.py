@@ -19,7 +19,8 @@ from gaussian3d import Gaussian3DKernel
 from custom_filters import median_func
 
 # Chose filter type
-filter_type = 'median'
+filter_type = 'median' # median or gaussian
+filter_size = 5 #if median
 
 # load images
 nii_mask = nib.load('acdc_spine_7t_037_48_T0000_th15.nii.gz')
@@ -36,7 +37,17 @@ if filter_type == 'gaussian':
     data_filt = convolve(data_nan, kernel)
     filename = 'bla_filt_gauss.nii.gz'
 elif filter_type == 'median':
-    data_filt=spi.generic_filter(data_nan, median_func, size=5)
+    # Get image info
+    dim = np.array(nii_data.header['dim'][1:4])
+    pixdim = nii_data.header['pixdim'][1:4]
+
+    # Setup filter "footprint", ndarray where median is going to be calculated around the pixel
+    # of interest. Round up to integers when calculating array dims.
+    norm_dim = pixdim/min(pixdim)
+    kernel_size = np.ndarray.astype(np.ceil(filter_size/(norm_dim)), dtype=int)
+    footprint= np.ones(kernel_size) 
+
+    data_filt=spi.generic_filter(data_nan, median_func, footprint=footprint)
     filename = 'bla_filt_median.nii.gz'
 
 # Mask filtered map
