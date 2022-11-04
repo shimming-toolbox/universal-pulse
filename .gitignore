@@ -6,3 +6,13 @@ venv
 # Pycharm stuff
 .idea/*
 universal_pulse.egg-info/
+
+# Python stuff
+__pycache__
+
+# Data
+data/
+*.nii.gz
+
+# Figures
+*.png
